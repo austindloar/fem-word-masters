@@ -88,29 +88,28 @@ function submitGuess(guess) {
 }
 
 function colorLetters(guess) {
-  let outOfPlace = [];
+  wordMap = {};
   for (let i = 0; i < 5; i++) {
-    letterBoxes[currentGuess * 5 + i].style.color = "#fff";
-    if (guess[i] === wordOfTheDay[i]) {
-      letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#006400";
-    } else if (!wordOfTheDay.includes(guess[i])) {
-      letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#888";
+    if (Object.hasOwn(wordMap, wordOfTheDay[i])) {
+      wordMap[wordOfTheDay[i]]++;
     } else {
-      outOfPlace.push(guess[i]);
+      wordMap[wordOfTheDay[i]] = 1;
     }
   }
 
   for (let i = 0; i < 5; i++) {
-    if (guess[i] !== wordOfTheDay[i]) {
-      if (outOfPlace.includes(guess[i])) {
-        outOfPlace.splice(outOfPlace.indexOf(guess[i]), 1);
-        letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#daa520";
+    if (wordMap[guess[i]] > 0) {
+      if (guess[i] === wordOfTheDay[i]) {
+        letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#006400";
       } else {
-        letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#888";
+        letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#daa520";
       }
-    } else if (outOfPlace.includes(guess[i])) {
-      outOfPlace.splice(outOfPlace.indexOf(guess[i]), 1);
+
+      wordMap[guess[i]]--;
+    } else {
+      letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#888";
     }
+    letterBoxes[currentGuess * 5 + i].style.color = "#fff";
   }
 }
 
