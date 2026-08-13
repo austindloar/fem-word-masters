@@ -100,8 +100,6 @@ function colorLetters(guess) {
     }
   }
 
-  console.log(outOfPlace);
-
   for (let i = 0; i < 5; i++) {
     if (guess[i] !== wordOfTheDay[i]) {
       if (outOfPlace.includes(guess[i])) {
