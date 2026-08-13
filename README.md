@@ -5,7 +5,7 @@ clone using JavaScript and two external APIs. This project focused on using
 JavaScript to build the logic of the game, as well as using AJAX via fetch to
 pull the daily random word and verify that the user inputs a real word.
 
-> DISCLAIMER: I am not responsible for any offensize or otherwise disagreeable
+> DISCLAIMER: I am not responsible for any offensive or otherwise disagreeable
 outputs from the external word API. I do not manage it, nor do I have any input
 as to what is in the word list it outputs from.
 
