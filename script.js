@@ -100,14 +100,18 @@ function colorLetters(guess) {
     }
   }
 
+  console.log(outOfPlace);
+
   for (let i = 0; i < 5; i++) {
-    if (wordOfTheDay[i] !== guess[i]) {
-      if (outOfPlace.includes(wordOfTheDay[i])) {
-        letterBoxes[
-          currentGuess * 5 + guess.indexOf(wordOfTheDay[i])
-        ].style.backgroundColor = "#daa520";
-        outOfPlace.splice(outOfPlace.indexOf(wordOfTheDay[i]), 1);
+    if (guess[i] !== wordOfTheDay[i]) {
+      if (outOfPlace.includes(guess[i])) {
+        outOfPlace.splice(outOfPlace.indexOf(guess[i]), 1);
+        letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#daa520";
+      } else {
+        letterBoxes[currentGuess * 5 + i].style.backgroundColor = "#888";
       }
+    } else if (outOfPlace.includes(guess[i])) {
+      outOfPlace.splice(outOfPlace.indexOf(guess[i]), 1);
     }
   }
 }
